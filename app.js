@@ -7,7 +7,7 @@ import 'dotenv/config';
 import express from "express";
 import bodyParser from "body-parser";
 import multer from "multer";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import session from "express-session";
 import pkg from "pg";
 import { createServer } from "http";  // NUEVO
@@ -110,7 +110,7 @@ app.post("/register", async (req, res) => {
     if (userExists.rows.length > 0)
       return res.status(400).json({ error: "El correo ya está registrado." });
 
-    const hashed = await bcrypt.hash(password, 10);
+    const hashed = await bcrypt.hashSync(password, 10);
     const result = await pool.query(
       "INSERT INTO usuario (nombre, email, password, rol, fondos) VALUES ($1, $2, $3, $4, 0) RETURNING *",
       [nombre, email, hashed, rol]
@@ -140,7 +140,7 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ error: "Credenciales inválidas." });
 
     const user = result.rows[0];
-    const valid = await bcrypt.compare(password, user.password);
+    const valid = bcrypt.compareSync(password, user.password);
     if (!valid) return res.status(400).json({ error: "Credenciales inválidas." });
 
     // Asegurar que fondos existe
@@ -190,7 +190,7 @@ app.post("/resetPassword", async (req, res) => {
     if (result.rows.length === 0)
       return res.status(400).json({ error: "Usuario no encontrado." });
 
-    const hashed = await bcrypt.hash(newPassword, 10);
+    const hashed = await bcrypt.hashSync(newPassword, 10);
     await pool.query(
       "UPDATE usuario SET password = $1 WHERE email = $2",
       [hashed, email]
@@ -514,7 +514,7 @@ app.post("/usuarios/agregar", requireAdmin, async (req, res) => {
     rol = rol === "admin" ? "admin" : "cliente";
 
     const password = "password123";
-    const hashed = await bcrypt.hash(password, 10);
+    const hashed = await bcrypt.hashSync(password, 10);
 
     const result = await pool.query(
       "INSERT INTO usuario (nombre, email, password, rol) VALUES ($1, $2, $3, $4) RETURNING *",
