@@ -1,45 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+:root {
+  --burgundy: #9D0030;
+  --double-spanish-white: #E7CBBC;
+  --cape-palliser: #9E6D4D;
+  --amaranth: #F22B4A;
+  --cream: #FFF8F3;
+  --dark-brown: #3D1A0F;
+}
 
 * {
   font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #0a3d62 0%, #1e5f8c 50%, #2980b9 100%);
+  background: linear-gradient(180deg, var(--double-spanish-white) 0%, var(--cream) 50%, var(--double-spanish-white) 100%);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* EFECTO DE NIEVE CAYENDO*/
-
+/* EFECTO DE NIEVE */
 .snowflake {
   position: fixed;
   top: -10px;
   z-index: 9999;
-  user-select: none;
+  
   cursor: default;
   animation-name: snowfall;
-  animation-duration: 10s;
+  animation-duration: 25s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  opacity: 0.8;
-  color: white;
-  font-size: 1em;
+  opacity: 1.0;
+  color: var(--cream);
+  font-size: 1.2em;
   pointer-events: none;
+  text-shadow: 0 0 5px rgba(157,0,48,0.3);
 }
 
 @keyframes snowfall {
-  0% {
-    transform: translateY(0vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-  }
+  0% { transform: translateY(0vh) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
 }
 
-/* Variaciones de velocidad para diferentes copos */
 .snowflake:nth-child(1) { left: 10%; animation-duration: 8s; }
 .snowflake:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 1s; }
 .snowflake:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 2s; }
@@ -50,243 +54,234 @@ body {
 .snowflake:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 1s; }
 .snowflake:nth-child(9) { left: 90%; animation-duration: 12s; animation-delay: 0s; }
 .snowflake:nth-child(10) { left: 15%; animation-duration: 15s; animation-delay: 2s; }
-.snowflake:nth-child(11) { left: 25%; animation-duration: 9s; animation-delay: 1s; }
-.snowflake:nth-child(12) { left: 35%; animation-duration: 11s; animation-delay: 3s; }
-.snowflake:nth-child(13) { left: 45%; animation-duration: 13s; animation-delay: 0.5s; }
-.snowflake:nth-child(14) { left: 55%; animation-duration: 10s; animation-delay: 2s; }
-.snowflake:nth-child(15) { left: 65%; animation-duration: 12s; animation-delay: 1.5s; }
-.snowflake:nth-child(16) { left: 75%; animation-duration: 14s; animation-delay: 0s; }
-.snowflake:nth-child(17) { left: 85%; animation-duration: 11s; animation-delay: 2.5s; }
-.snowflake:nth-child(18) { left: 95%; animation-duration: 9s; animation-delay: 1s; }
-.snowflake:nth-child(19) { left: 5%; animation-duration: 13s; animation-delay: 3s; }
-.snowflake:nth-child(20) { left: 12%; animation-duration: 10s; animation-delay: 0.5s; }
 
-/* HEADER NAVIDEÑO */
+/* HEADER */
 header {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #c0392b 100%) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 40px rgba(255,215,0,0.3) !important;
-  border-bottom: 4px solid #27ae60;
+  background: linear-gradient(135deg, var(--burgundy) 0%, #7A0026 100%) !important;
+  box-shadow: 0 4px 30px rgba(157,0,48,0.4);
+  border-bottom: 4px solid var(--cape-palliser);
   position: relative;
+  padding: 25px 0 !important;
 }
 
 header::before {
   content: '🎄';
   position: absolute;
-  top: 10px;
-  left: 20px;
-  font-size: 3rem;
+  top: 75%;
+  left: 45px;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
   animation: swing 3s ease-in-out infinite;
 }
 
 header::after {
-  content: '🎅';
+  content: '☃️';
   position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 3rem;
-  animation: swing 3s ease-in-out infinite;
-  animation-delay: 1.5s;
+  top: 50%;
+  right: 90px;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  animation: swing 3s ease-in-out infinite reverse;
 }
 
 @keyframes swing {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(5deg); }
+  0%, 100% { transform: translateY(-50%) rotate(-8deg); }
+  50% { transform: translateY(-50%) rotate(8deg); }
 }
 
 header h1 {
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.4), 0 0 20px rgba(255,215,0,0.6);
-  color: white !important;
-  font-family: 'Mountains of Christmas', cursive !important;
-  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  color: var(--cream) !important;
+  font-family: 'Playfair Display', serif !important;
+  letter-spacing: 3px;
+  font-size: 2rem;
 }
 
 header small {
-  color: rgba(255,255,255,0.95) !important;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  font-weight: 500;
+  color: var(--double-spanish-white) !important;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
-/* Botones del header navideños */
+/* Botones header */
 .btn-header {
-  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-  color: white;
-  border: 3px solid #ffd700;
+  background: linear-gradient(135deg, var(--cape-palliser) 0%, #7A5035 100%);
+  color: var(--cream);
+  border: 2px solid var(--double-spanish-white);
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(39,174,96,0.4);
+  border-radius: 35px;
+  padding: 8px 20px;
 }
 
 .btn-header:hover {
-  background: linear-gradient(135deg, #ffd700 0%, #f39c12 100%);
-  color: #2c3e50;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(255,215,0,0.6);
+  background: linear-gradient(135deg, var(--amaranth) 0%, var(--burgundy) 100%);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(242,43,74,0.4);
 }
 
-/* Auth overlay navideño */
-.auth-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(192,57,43,0.95) 0%, rgba(231,76,60,0.95) 100%);
+/* AUTH OVERLAY */
+#authOverlay {
+  background: linear-gradient(135deg, rgba(157,0,48,0.95) 0%, rgba(61,26,15,0.95) 100%);
+}
+
+#authOverlay .card {
+  border: none !important;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+#authOverlay h2 {
+  color: var(--double-spanish-white) !important;
+  font-family: 'Playfair Display', serif;
+}
+
+/* MAIN CONTENT */
+main.container {
+  max-width: 1400px;
+  padding: 40px 20px;
+}
+
+/* SECTION TITLE - Nueva distribución */
+.section-title {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--double-spanish-white) 100%);
+  padding: 35px 40px;
+  border-radius: 40px;
+  box-shadow: 0 8px 30px rgba(157,0,48,0.15);
+  margin-bottom: 40px;
+  border-left: 6px solid var(--burgundy);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
+  gap: 20px;
 }
 
-.auth-card {
-  max-width: 900px;
-  width: 100%;
-  background: white;
-  overflow: hidden;
-  animation: slideIn 0.5s ease;
-  border: 4px solid #27ae60;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 60px rgba(255,215,0,0.4);
+.section-title h2 {
+  color: var(--burgundy) !important;
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  font-size: 1.8rem;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.section-title h2::after {
+  display: none;
 }
 
-/* Cards navideños */
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 3px solid #27ae60 !important;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1), 0 0 30px rgba(255,215,0,0.2);
+.section-title p {
+  color: var(--cape-palliser);
 }
 
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.2), 0 0 50px rgba(255,215,0,0.4) !important;
-  border-color: #ffd700 !important;
-}
-
-/* Tabla navideña */
+/* TABLA */
 .table-responsive {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 40px rgba(39,174,96,0.2);
-  border: 3px solid #27ae60;
+  background: var(--cream);
+  border-radius: 45px;
+  padding: 30px;
+  box-shadow: 0 8px 35px rgba(157,0,48,0.12);
+  border: 2px solid var(--double-spanish-white);
 }
 
 .table thead {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%) !important;
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--amaranth) 100%) !important;
 }
 
 .table thead th {
-  color: white !important;
-  font-weight: 700;
+  color: var(--cream) !important;
+  font-weight: 600;
   border: none !important;
-  padding: 15px !important;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  padding: 18px 15px !important;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
 
 .table tbody tr {
   transition: all 0.3s ease;
+  border-bottom: 1px solid var(--double-spanish-white);
 }
 
 .table tbody tr:hover {
-  background: linear-gradient(135deg, #d5f4e6 0%, #aed581 100%) !important;
-  transform: scale(1.02);
-  box-shadow: 0 4px 15px rgba(39,174,96,0.3);
+  background: linear-gradient(135deg, var(--double-spanish-white) 0%, var(--cream) 100%) !important;
+  transform: scale(1.01);
 }
 
-/* Botones navideños */
+/* BOTONES */
 .btn-primary {
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-  border: 2px solid #ffd700;
+  background: linear-gradient(135deg, var(--cape-palliser) 0%, #7A5035 100%);
+  border: none;
   font-weight: 600;
-  padding: 12px 30px;
+  padding: 12px 28px;
+  border-radius: 60px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(52,152,219,0.4);
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--amaranth) 100%);
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(52,152,219,0.6), 0 0 30px rgba(255,215,0,0.4);
-  border-color: white;
+  box-shadow: 0 8px 25px rgba(157,0,48,0.4);
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-  border: 2px solid #ffd700;
+  background: linear-gradient(135deg, var(--burgundy) 0%, #7A0026 100%);
+  border: none;
   font-weight: 600;
-  padding: 12px 30px;
+  padding: 12px 28px;
+  border-radius: 60px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(39,174,96,0.4);
 }
 
 .btn-success:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(39,174,96,0.6), 0 0 30px rgba(255,215,0,0.4);
-  border-color: white;
+  background: linear-gradient(135deg, var(--amaranth) 0%, var(--burgundy) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(242,43,74,0.4);
 }
 
 .btn-warning {
-  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-  border: 2px solid #27ae60;
+  background: linear-gradient(135deg, var(--cape-palliser) 0%, #B8845E 100%);
+  border: none;
   color: white;
   font-weight: 600;
-  padding: 12px 30px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(243,156,18,0.4);
+  padding: 12px 28px;
+  border-radius: 30px;
 }
 
 .btn-warning:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(243,156,18,0.6), 0 0 30px rgba(255,215,0,0.4);
+  background: linear-gradient(135deg, #B8845E 0%, var(--cape-palliser) 100%);
   color: white;
+  transform: translateY(-3px);
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
-  border: 2px solid #ffd700;
+  background: linear-gradient(135deg, var(--amaranth) 0%, var(--burgundy) 100%);
+  border: none;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(192,57,43,0.4);
+  border-radius: 55px;
 }
 
 .btn-danger:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(192,57,43,0.6), 0 0 30px rgba(255,215,0,0.4);
+  box-shadow: 0 8px 25px rgba(242,43,74,0.5);
 }
 
-/* Badge carrito navideño */
+/* BADGE CARRITO */
 #badgeCarrito {
-  animation: pulse 1.5s infinite, glow 2s infinite;
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
-  box-shadow: 0 0 15px rgba(231,76,60,0.6);
+  animation: pulse 2s infinite;
+  background: var(--amaranth) !important;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 50%;
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  50% { transform: scale(1.2); }
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(231,76,60,0.6); }
-  50% { box-shadow: 0 0 25px rgba(255,215,0,0.8); }
-}
-
-/* Galería navideña */
+/* GALERÍA - Nueva distribución en grid */
 #galeria .card {
-  border-radius: 15px;
+  border-radius: 50px;
   overflow: hidden;
-  background: white;
-  border: 3px solid #27ae60;
+  background: rgb(231, 101, 120);
+  border: 3px solid #085729;
 }
 
 #galeria .card-img-top {
@@ -296,60 +291,71 @@ header small {
 #galeria .card:hover .card-img-top {
   transform: scale(1.15) rotate(2deg);
 }
-
-/* Modales navideños */
+/* MODALES */
 .modal-content {
-  border-radius: 20px;
-  border: 4px solid #27ae60;
-  box-shadow: 0 10px 50px rgba(0,0,0,0.3), 0 0 60px rgba(255,215,0,0.3);
+  border-radius: 45px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.3);
 }
 
 .modal-header {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--amaranth) 100%);
+  color: var(--cream);
   border: none;
-  padding: 25px 35px;
-  position: relative;
+  padding: 30px 40px;
 }
 
 .modal-header::before {
-  content: '🎄';
+  content: '✨';
   position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  animation: swing 3s ease-in-out infinite;
+  left: 20px;
+  font-size: 1.5rem;
+}
+
+.modal-header .modal-title {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
+.modal-body {
+  background: var(--cream);
+  padding: 35px;
 }
 
 .modal-footer {
   border: none;
-  padding: 20px 30px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+  padding: 25px 35px;
+  background: var(--double-spanish-white);
 }
 
-/* Forms navideños */
+/* FORMS */
 .form-control, .form-select {
-  border: 3px solid #27ae60;
-  padding: 14px;
+  border: 2px solid var(--double-spanish-white);
+  padding: 14px 18px;
+  border-radius: 25px;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  background: rgb(247, 247, 248);
 }
 
 .form-control:focus, .form-select:focus {
-  border-color: #ffd700;
-  box-shadow: 0 0 0 0.3rem rgba(255,215,0,0.4), 0 0 20px rgba(39,174,96,0.3);
-  transform: scale(1.02);
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 4px rgba(157,0,48,0.15);
 }
 
-/* Títulos navideños */
+.form-label {
+  color: var(--dark-brown);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* TÍTULOS */
 h2 {
-  color: #c0392b;
+  color: var(--burgundy);
   font-weight: 700;
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.1), 0 0 20px rgba(255,215,0,0.3);
+  font-family: 'Playfair Display', serif;
   position: relative;
   padding-bottom: 15px;
-  font-family: 'Mountains of Christmas', cursive;
 }
 
 h2::after {
@@ -357,304 +363,81 @@ h2::after {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 80px;
-  height: 5px;
-  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-  border-radius: 3px;
-  box-shadow: 0 2px 10px rgba(39,174,96,0.5);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--burgundy), var(--amaranth));
+  border-radius: 2px;
 }
 
-/* Footer navideño */
+/* FOOTER */
 footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%) !important;
-  margin-top: 50px !important;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.3), 0 0 40px rgba(255,215,0,0.2);
-  border-top: 4px solid #27ae60;
-  position: relative;
+  background: linear-gradient(135deg, var(--dark-brown) 0%, #1A0A05 100%) !important;
+  margin-top: 60px !important;
+  border-top: 5px solid var(--burgundy);
+  padding: 40px 0;
 }
 
-footer::before {
-  content: '🎄 ❄️ 🎅 ❄️ 🎁 ❄️ 🔔';
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5rem;
-  animation: twinkle 2s infinite;
+footer p, footer small {
+  color: var(--double-spanish-white);
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-/* Animaciones */
-.animate-fade-in {
-  animation: fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Sección título navideña */
-.section-title {
-  background: linear-gradient(135deg, #ffffff 0%, #ecf0f1 100%);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.12), 0 0 40px rgba(39,174,96,0.2);
-  margin-bottom: 35px;
-  border: 3px solid #27ae60;
-  position: relative;
-}
-
-.section-title::before {
-  content: '⭐';
-  position: absolute;
-  top: -15px;
-  left: 20px;
-  font-size: 2rem;
-  animation: twinkle 2s infinite;
-}
-
-/* Video login - animación */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive */
-@media (max-width: 576px) {
-  .auth-overlay .auth-right,
-  #authOverlay .auth-right {
-    padding: 30px 20px !important;
-    max-width: calc(100% - 40px) !important;
-  }
-  
-  header::before,
-  header::after {
-    font-size: 2rem;
-  }
-}
-
-/* Z-index organization */
-header {
-  position: relative;
-  z-index: 1000;
-}
-
-.dropdown-menu {
-  z-index: 2000 !important;
-}
-
-.modal {
-  z-index: 3000 !important;
-}
-
-.modal-backdrop {
-  z-index: 2990 !important;
-}
-
-#authOverlay {
-  z-index: 4000;
-}
-
-.snowflake {
-  z-index: 9999 !important;
-}
-
-/* Efectos adicionales navideños */
+/* CHRISTMAS LIGHTS */
 .christmas-lights {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 5px;
-  background: linear-gradient(
-    90deg,
-    #ff0000 0%,
-    #00ff00 25%,
-    #0000ff 50%,
-    #ffff00 75%,
-    #ff0000 100%
-  );
-  animation: lights 3s linear infinite;
+  height: 4px;
+  background: linear-gradient(90deg, var(--burgundy), var(--amaranth), var(--cape-palliser), var(--burgundy));
+  background-size: 200% 100%;
+  animation: lights 4s linear infinite;
   z-index: 10000;
 }
 
 @keyframes lights {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.5); }
-  100% { filter: brightness(1); }
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
-/* Asegurar que el header no tape el dropdown */
-header {
-  position: relative;
-  z-index: 10;
+/* ANIMACIONES */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease;
 }
 
-/* Asegurar que las secciones no tapen el dropdown */
-main {
-  position: relative;
-  z-index: 1;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.section-title {
-  position: relative;
-  z-index: 1;
+/* MAPA */
+#map-template {
+  border: 3px solid var(--burgundy) !important;
+  border-radius: 15px;
 }
 
-
-/* Mejorar el badge del carrito */
-#badgeCarrito {
-  font-size: 0.75rem;
-  padding: 0.25em 0.5em;
-  border-radius: 50%;
-  min-width: 20px;
-  text-align: center;
+/* TICKET */
+#modalTicket .modal-content {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--double-spanish-white) 100%);
+  border: 3px solid var(--burgundy);
 }
 
-/* Estilos para mensajes de error en carrito */
-.alert-stock {
-  background-color: #fff3cd;
-  border-color: #ffc107;
-  color: #856404;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  margin-top: 0.5rem;
-}
-
-/* Fix para el dropdown del perfil - SOLUCIÓN DEFINITIVA */
-.dropdown-menu {
-  z-index: 9999 !important;
-  position: absolute !important;
-}
-
-#perfilDropdown {
-  z-index: 9999 !important;
-  position: absolute !important;
-}
-
-/* El botón dropdown necesita position relative */
-.dropdown {
-  position: relative !important;
-}
-
-/* Asegurar que el header no tape el dropdown */
-header {
-  position: relative;
-  z-index: 10;
-}
-
-/* Asegurar que las secciones no tapen el dropdown */
-main {
-  position: relative;
-  z-index: 1;
-}
-
-.section-title {
-  position: relative;
-  z-index: 1;
-}
-
-/* Forzar que el dropdown se muestre correctamente */
-.dropdown-menu.show {
-  z-index: 9999 !important;
-  display: block !important;
-}
-
-/* Agregar esto al final de tu archivo estilo.css */
-
-/* Fix para el dropdown del perfil - SOLUCIÓN DEFINITIVA */
-.dropdown-menu {
-  z-index: 9999 !important;
-  position: absolute !important;
-}
-
-#perfilDropdown {
-  z-index: 9999 !important;
-  position: absolute !important;
-}
-
-/* El botón dropdown necesita position relative */
-.dropdown,
-.dropend,
-.dropstart,
-.dropup {
-  position: relative !important;
-  z-index: 9998 !important;
-}
-
-/* Asegurar que el header no tape el dropdown pero tampoco sea demasiado alto */
-header {
-  position: relative;
-  z-index: 100 !important;
-}
-
-/* Asegurar que las secciones no tapen el dropdown */
-main {
-  position: relative;
-  z-index: 1 !important;
-}
-
-.section-title {
-  position: relative;
-  z-index: 1 !important;
-}
-
-/* Forzar que el dropdown se muestre correctamente */
-.dropdown-menu.show {
-  z-index: 9999 !important;
-  display: block !important;
-}
-
-/* Mejorar el badge del carrito */
-#badgeCarrito {
-  font-size: 0.75rem;
-  padding: 0.25em 0.5em;
-  border-radius: 50%;
-  min-width: 20px;
-  text-align: center;
-  z-index: 1;
-}
-
-/* Estilos para mensajes de error en carrito */
-.alert-stock {
-  background-color: #fff3cd;
-  border-color: #ffc107;
-  color: #856404;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-  margin-top: 0.5rem;
-}
-
-/* Prioridad adecuada para que el dropdown siempre esté arriba */
+/* DROPDOWN FIX */
 .dropdown-menu {
   z-index: 200000 !important;
+  border-radius: 60px;
+  border: 2px solid var(--double-spanish-white);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
 }
 
-/* Asegura que el botón sea un contenedor con capa válida */
-.dropend, .dropdown {
-  position: relative !important;
-  z-index: 200000 !important;
+.dropdown-item:hover {
+  background: var(--double-spanish-white);
+  color: var(--burgundy);
 }
 
-/* Evita que el header tape cosas */
-header {
-  position: relative;
-  z-index: 1000;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.4rem; }
+  header::before, header::after { display: none; }
+  .section-title { padding: 25px; flex-direction: column; text-align: center; }
+  #galeria { grid-template-columns: 1fr; }
 }

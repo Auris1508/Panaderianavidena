@@ -514,10 +514,14 @@ function borrarProducto(id) {
 // GALERÍA
 function cargarGaleria() {
   const panes = [
-    { nombre: 'Pan de Muerto', descripcion: 'Tradicional pan mexicano decorado con "huesitos" de masa y azúcar.', precio: 25, img: 'https://images.pexels.com/photos/19132888/pexels-photo-19132888.jpeg' },
-    { nombre: 'Calaverita de Azúcar', descripcion: 'Dulce típico de Día de Muertos hecho de azúcar y decorado a mano.', precio: 15, img: 'https://images.pexels.com/photos/5702776/pexels-photo-5702776.jpeg' },
-    { nombre: 'Pan de Calabaza', descripcion: 'Pan suave y esponjoso hecho con puré de calabaza y especias.', precio: 30, img: 'https://images.pexels.com/photos/6211080/pexels-photo-6211080.jpeg' },
-    { nombre: 'Pan Fantasma', descripcion: 'Pan decorado con forma de fantasma, ideal para Halloween.', precio: 18, img: 'https://images.pexels.com/photos/1304543/pexels-photo-1304543.jpeg' }
+    { nombre: 'Tiramisu', descripcion: 'El tiramisú para mi es el postre de Navidad de mi casa, siempre se hace y esa combinación de café y mascarpone es increíble. Desde que estuve viviendo en Italia lo hacemos siempre y es lo que siempre espera mi familia tener al final de la cena.', precio: 25, img: 'https://images.pexels.com/photos/34801391/pexels-photo-34801391.jpeg' },
+    { nombre: 'Profiteroles', descripcion: 'Los profiteroles son unos dulces que me apasionan y que rellenos de nata y cubiertos de chocolate son una verdadera maravilla. ', precio: 150, img: 'https://images.pexels.com/photos/8774282/pexels-photo-8774282.jpeg' },
+    { nombre: 'Natillas', descripcion: 'Otro clásico de mi abuela son las natillas caseras. Un postre super fácil de hacer y que además podemos dejar hecho un par de días antes en sus cuencos y se saca en la cena en formato individual.', precio: 45, img: 'https://images.pexels.com/photos/33474058/pexels-photo-33474058.jpeg' },
+    { nombre: 'Flan de turron', descripcion: 'El flan de turrón es un postre delicioso, especialmente popular durante la temporada navideña en España, que aprovecha el turrón blando (tipo Jijona) para darle un sabor y una textura únicos. ', precio: 100, img: 'https://images.pexels.com/photos/19786219/pexels-photo-19786219.jpeg' },
+    { nombre: 'Mousse de chocolate', descripcion: 'Otro de los postres con chocolate top es el mousse de chocolate. Una de las mejores formas de hacer postres individuales. Tiene un poco de trabajo pero merece mucho la pena.', precio: 100, img:'https://images.pexels.com/photos/3026810/pexels-photo-3026810.jpeg' },
+    { nombre: 'Coulant de chocolate', descripcion: 'Este mini bizcocho relleno de chocolate es fruto de un error, y qué error más bueno. Es perfecto para dejar con la boca abierta a tus invitados. ', precio: 100, img:'https://images.pexels.com/photos/20377567/pexels-photo-20377567.jpeg' },
+    { nombre: 'Cheesecake', descripcion: 'La tarta de queso es uno de los postres más populares y queridos en todo el mundo. Su textura cremosa y su sabor suave la convierten en una opción irresistible para los amantes del dulce.', precio: 120, img:'https://images.pexels.com/photos/47013/pexels-photo-47013.jpeg' },
+    { nombre: 'Brownie', descripcion: 'El brownie es un postre clásico que combina la riqueza del chocolate con una textura densa y húmeda. Es perfecto para los amantes del chocolate y se puede disfrutar solo o acompañado de helado.', precio: 80, img:'https://images.pexels.com/photos/3026804/pexels-photo-3026804.jpeg' },
   ];
   const galeria = document.getElementById('galeria');
   galeria.innerHTML = panes.map(pan => `
