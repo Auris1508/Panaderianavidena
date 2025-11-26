@@ -392,7 +392,7 @@ function cargarProductos() {
         tbody.innerHTML += `
           <tr>
             <td>${idx + 1}</td>
-            <td><img src="${imgSrc}" alt="pan" class="img-thumbnail" style="width:60px;height:60px;object-fit:cover;"></td>
+            <td><img src="${imgSrc}" alt="pan" class="img-thumbnail" style="width:90px;height:90px;object-fit:cover;"></td>
             <td>${escapeHtml(prod.nombre)}</td>
             <td>${escapeHtml(prod.descripcion || '')}</td>
             <td>$${Number(prod.precio).toFixed(2)}</td>
