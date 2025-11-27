@@ -4,33 +4,33 @@ let charts = {}; // Guardar instancias de gráficas
 
 // Colores navideños para las gráficas
 const coloresNavidad = {
-  rojo: 'rgba(192, 57, 43, 0.8)',
-  verde: 'rgba(39, 174, 96, 0.8)',
-  dorado: 'rgba(243, 156, 18, 0.8)',
-  azul: 'rgba(52, 152, 219, 0.8)',
-  morado: 'rgba(155, 89, 182, 0.8)',
+  rojo: 'rgba(245, 61, 153, 0.8)',
+  verde: 'rgba(198, 24, 204, 0.8)',
+  dorado: 'rgba(10, 168, 241, 0.8)',
+  azul: 'rgba(241, 14, 82, 0.8)',
+  morado: 'rgba(55, 221, 119, 0.8)',
   turquesa: 'rgba(22, 160, 133, 0.8)',
   
   // Versiones con más transparencia
-  rojoTransp: 'rgba(192, 57, 43, 0.6)',
-  verdeTransp: 'rgba(39, 174, 96, 0.6)',
-  doradoTransp: 'rgba(243, 156, 18, 0.6)',
-  azulTransp: 'rgba(52, 152, 219, 0.6)',
-  moradoTransp: 'rgba(155, 89, 182, 0.6)',
-  turquesaTransp: 'rgba(22, 160, 133, 0.6)',
+  rojoTransp: 'rgba(103, 123, 238, 0.6)',
+  verdeTransp: 'rgba(5, 240, 103, 0.6)',
+  doradoTransp: 'rgba(5, 90, 248, 0.6)',
+  azulTransp: 'rgba(151, 5, 73, 0.6)',
+  moradoTransp: 'rgba(197, 137, 221, 0.6)',
+  turquesaTransp: 'rgba(234, 247, 56, 0.6)',
 };
 
 // Paleta de colores variados
 const paletaColores = [
-  'rgba(192, 57, 43, 0.8)',   // Rojo
+  'rgba(168, 28, 13, 0.8)',   // Rojo
   'rgba(39, 174, 96, 0.8)',   // Verde
-  'rgba(243, 156, 18, 0.8)',  // Dorado
-  'rgba(52, 152, 219, 0.8)',  // Azul
+  'rgba(18, 243, 224, 0.8)',  // Dorado
+  'rgba(117, 191, 240, 0.8)',  // Azul
   'rgba(155, 89, 182, 0.8)',  // Morado
-  'rgba(22, 160, 133, 0.8)',  // Turquesa
-  'rgba(231, 76, 60, 0.8)',   // Rojo claro
-  'rgba(46, 204, 113, 0.8)',  // Verde claro
-  'rgba(241, 196, 15, 0.8)',  // Amarillo
+  'rgba(155, 22, 160, 0.8)',  // Turquesa
+  'rgba(231, 60, 89, 0.8)',   // Rojo claro
+  'rgba(9, 110, 51, 0.8)',  // Verde claro
+  'rgba(131, 110, 26, 0.8)',  // Amarillo
   'rgba(142, 68, 173, 0.8)',  // Morado oscuro
 ];
 
@@ -109,7 +109,7 @@ async function cargarProductosMasVendidos() {
             display: true,
             text: '🥖 Panes más populares',
             font: { size: 16, weight: 'bold' },
-            color: '#27ae60'
+            color: '#ae2781ff'
           }
         },
         scales: {
@@ -117,15 +117,15 @@ async function cargarProductosMasVendidos() {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#2c3e50'
+              color: '#0c6ecfff'
             },
             grid: {
-              color: 'rgba(39, 174, 96, 0.1)'
+              color: 'rgba(11, 241, 107, 0.1)'
             }
           },
           y: {
             ticks: {
-              color: '#2c3e50',
+              color: '#0667c9ff',
               font: { weight: 'bold' }
             }
           }
@@ -168,7 +168,7 @@ async function cargarUsuariosMasCompras() {
             display: true,
             text: '👥 Clientes más frecuentes',
             font: { size: 16, weight: 'bold' },
-            color: '#f39c12'
+            color: '#12c6f3ff'
           }
         },
         scales: {
@@ -176,15 +176,15 @@ async function cargarUsuariosMasCompras() {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#2c3e50'
+              color: '#ec0fe1ff'
             },
             grid: {
-              color: 'rgba(243, 156, 18, 0.1)'
+              color: 'rgba(14, 243, 167, 0.1)'
             }
           },
           x: {
             ticks: {
-              color: '#2c3e50',
+              color: '#5f921cff',
               font: { weight: 'bold' }
             }
           }
@@ -240,7 +240,7 @@ async function cargarVentasSemana() {
             display: true,
             text: '📅 Tendencia de ventas semanal',
             font: { size: 16, weight: 'bold' },
-            color: '#3498db'
+            color: '#cd34dbff'
           }
         },
         scales: {
@@ -248,7 +248,7 @@ async function cargarVentasSemana() {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#2c3e50'
+              color: '#ca7b99'
             },
             grid: {
               color: 'rgba(52, 152, 219, 0.1)'
@@ -256,7 +256,7 @@ async function cargarVentasSemana() {
           },
           x: {
             ticks: {
-              color: '#2c3e50',
+              color: '#4fa4faff',
               font: { weight: 'bold' }
             }
           }
@@ -299,7 +299,7 @@ async function cargarIngresosMensuales() {
             display: true,
             text: '💰 Evolución de ingresos',
             font: { size: 16, weight: 'bold' },
-            color: '#e74c3c'
+            color: '#EED9E3',
           }
         },
         scales: {
@@ -309,15 +309,15 @@ async function cargarIngresosMensuales() {
               callback: function(value) {
                 return '$' + value.toLocaleString();
               },
-              color: '#2c3e50'
+              color: '#ee66f3ff'
             },
             grid: {
-              color: 'rgba(231, 76, 60, 0.1)'
+              color: 'rgba(235, 161, 238, 0.1)'
             }
           },
           x: {
             ticks: {
-              color: '#2c3e50',
+              color: '#D59FB5',
               font: { weight: 'bold' }
             }
           }
@@ -426,7 +426,7 @@ async function cargarStockVsVendido() {
             display: true,
             text: '📦 Inventario vs Rotación',
             font: { size: 16, weight: 'bold' },
-            color: '#16a085'
+            color: '#01f5c4ff'
           }
         },
         scales: {
@@ -492,9 +492,9 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
   
   const colores = {
     success: '#27ae60',
-    danger: '#e74c3c',
-    warning: '#f39c12',
-    info: '#3498db'
+    danger: '#e7b13cff',
+    warning: '#a4f312ff',
+    info: '#b419d3ff'
   };
   
   const toast = document.createElement('div');

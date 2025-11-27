@@ -262,8 +262,6 @@ async function agregarFondos() {
   }
 }
 
-// PERFIL DROPDOWN
-
 function actualizarPerfilDropdown() {
   const menu = document.getElementById('perfilDropdown');
   menu.innerHTML = '';
@@ -315,13 +313,14 @@ function actualizarPerfilDropdown() {
     `;
     menu.appendChild(liGestionUsuarios);
     
-    const liGraficos = document.createElement('li');
-    liGraficos.innerHTML = `
-      <a class="dropdown-item" href="#" id="verGraficos">
-        <i class="bi bi-graph-up"></i> Ver Estadísticas
+    // ⭐ NUEVO: Menú de Estadísticas
+    const liEstadisticas = document.createElement('li');
+    liEstadisticas.innerHTML = `
+      <a class="dropdown-item" href="#" id="btnEstadisticas">
+        <i class="bi bi-graph-up-arrow"></i> Estadísticas
       </a>
     `;
-    menu.appendChild(liGraficos);
+    menu.appendChild(liEstadisticas);
   }
   
   // Logout
@@ -355,16 +354,18 @@ function actualizarPerfilDropdown() {
       new bootstrap.Modal(document.getElementById('modalUsuarios')).show();
     });
     
-    const btnG = document.getElementById('verGraficos');
-    if (btnG) btnG.addEventListener('click', (e) => {
+    // Event listener para Estadísticas
+    const btnEst = document.getElementById('btnEstadisticas');
+    if (btnEst) btnEst.addEventListener('click', (e) => {
       e.preventDefault();
-      abrirGraficos();
+      new bootstrap.Modal(document.getElementById('modalEstadisticas')).show();
     });
     
     const l = document.getElementById('logoutBtn2');
     if (l) l.addEventListener('click', handleLogout);
   }, 10);
 }
+
 
 
 // PRODUCTOS
