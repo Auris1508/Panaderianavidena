@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
 :root {
-  --burgundy: #9D0030;
-  --double-spanish-white: #E7CBBC;
-  --cape-palliser: #9E6D4D;
-  --amaranth: #F22B4A;
-  --cream: #FFF8F3;
-  --dark-brown: #3D1A0F;
+  --burgundy: #5e4136;
+  --double-spanish-white: #bd826c;
+  --cape-palliser: #9d061f;
+  --amaranth: #eab2c2;
+  --cream: #c2385f;
+  --dark-brown: #c2385f;
 }
 
 * {
@@ -90,7 +90,7 @@ header::after {
 }
 
 header h1 {
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.952);
   color: var(--cream) !important;
   font-family: 'Playfair Display', serif !important;
   letter-spacing: 3px;
@@ -116,7 +116,7 @@ header small {
 
 .btn-header:hover {
   background: linear-gradient(135deg, var(--amaranth) 0%, var(--burgundy) 100%);
-  color: white;
+  color: rgb(226, 185, 221);
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(242,43,74,0.4);
 }
@@ -148,7 +148,7 @@ main.container {
   background: linear-gradient(135deg, var(--cream) 0%, var(--double-spanish-white) 100%);
   padding: 35px 40px;
   border-radius: 40px;
-  box-shadow: 0 8px 30px rgba(157,0,48,0.15);
+  box-shadow: 0 8px 30px rgb(248, 2, 76);
   margin-bottom: 40px;
   border-left: 6px solid var(--burgundy);
   display: flex;
@@ -246,7 +246,7 @@ main.container {
 
 .btn-warning:hover {
   background: linear-gradient(135deg, #B8845E 0%, var(--cape-palliser) 100%);
-  color: white;
+  color: rgb(233, 168, 230);
   transform: translateY(-3px);
 }
 

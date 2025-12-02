@@ -4,34 +4,34 @@ let charts = {}; // Guardar instancias de gráficas
 
 // Colores navideños para las gráficas
 const coloresNavidad = {
-  rojo: 'rgba(245, 61, 153, 0.8)',
-  verde: 'rgba(198, 24, 204, 0.8)',
-  dorado: 'rgba(10, 168, 241, 0.8)',
-  azul: 'rgba(241, 14, 82, 0.8)',
-  morado: 'rgba(55, 221, 119, 0.8)',
-  turquesa: 'rgba(22, 160, 133, 0.8)',
+  rojo: 'rgba(246, 104, 136, 0.8)',
+  verde: 'rgba(99, 123, 91, 0.8)',
+  dorado: 'rgba(163, 170, 95, 0.8)',
+  azul: 'rgba(174, 228, 196, 0.8)',
+  morado: 'rgba(245, 142, 131, 0.8)',
+  turquesa: 'rgba(152, 186, 163, 0.8)',
   
   // Versiones con más transparencia
-  rojoTransp: 'rgba(103, 123, 238, 0.6)',
-  verdeTransp: 'rgba(5, 240, 103, 0.6)',
-  doradoTransp: 'rgba(5, 90, 248, 0.6)',
-  azulTransp: 'rgba(151, 5, 73, 0.6)',
-  moradoTransp: 'rgba(197, 137, 221, 0.6)',
-  turquesaTransp: 'rgba(234, 247, 56, 0.6)',
+  rojoTransp: 'rgba(246, 104, 136, 0.6)',
+  verdeTransp: 'rgba(99, 123, 91, 0.6)',
+  doradoTransp: 'rgba(163, 170, 95, 0.6)',
+  azulTransp: 'rgba(174, 228, 196, 0.6)',
+  moradoTransp: 'rgba(245, 142, 131, 0.6)',
+  turquesaTransp: 'rgba(152, 186, 163, 0.6)',
 };
 
 // Paleta de colores variados
 const paletaColores = [
-  'rgba(168, 28, 13, 0.8)',   // Rojo
-  'rgba(39, 174, 96, 0.8)',   // Verde
-  'rgba(18, 243, 224, 0.8)',  // Dorado
-  'rgba(117, 191, 240, 0.8)',  // Azul
-  'rgba(155, 89, 182, 0.8)',  // Morado
-  'rgba(155, 22, 160, 0.8)',  // Turquesa
-  'rgba(231, 60, 89, 0.8)',   // Rojo claro
-  'rgba(9, 110, 51, 0.8)',  // Verde claro
-  'rgba(131, 110, 26, 0.8)',  // Amarillo
-  'rgba(142, 68, 173, 0.8)',  // Morado oscuro
+  'rgba(99, 123, 91, 0.8)',
+  'rgba(163, 170, 95, 0.8)',
+  'rgba(174, 228, 196, 0.8)',
+  'rgba(245, 142, 131, 0.8)',
+  'rgba(246, 104, 136, 0.8)',
+  'rgba(152, 186, 163, 0.8)',
+  'rgba(120, 145, 110, 0.8)',
+  'rgba(200, 205, 130, 0.8)',
+  'rgba(255, 180, 190, 0.8)',
+  'rgba(210, 240, 220, 0.8)',
 ];
 
 // Función para destruir gráficas existentes
@@ -49,24 +49,15 @@ async function cargarEstadisticas() {
   console.log('📊 Cargando estadísticas...');
   
   try {
-    // Destruir gráficas anteriores
     destruirGraficas();
     
-    // Mostrar loading en los cards
-    document.getElementById('statTotalVentasCard').textContent = '...';
-    document.getElementById('statIngresosCard').textContent = '...';
-    document.getElementById('statProductosCard').textContent = '...';
-    document.getElementById('statClientesCard').textContent = '...';
-    
-    // Cargar datos en paralelo
     await Promise.all([
       cargarProductosMasVendidos(),
       cargarUsuariosMasCompras(),
       cargarVentasSemana(),
       cargarIngresosMensuales(),
       cargarTopUsuariosIngresos(),
-      cargarStockVsVendido(),
-      cargarResumenCards()
+      cargarStockVsVendido()
     ]);
     
     console.log('✅ Estadísticas cargadas correctamente');
@@ -77,7 +68,7 @@ async function cargarEstadisticas() {
   }
 }
 
-// 1. Productos Más Vendidos (Barras Horizontales)
+// 1. Productos Más Vendidos (Radar)
 async function cargarProductosMasVendidos() {
   try {
     const response = await fetch('/estadisticas/productos-mas-vendidos');
@@ -86,19 +77,23 @@ async function cargarProductosMasVendidos() {
     const ctx = document.getElementById('chartProductosMasVendidos');
     
     charts.productosMasVendidos = new Chart(ctx, {
-      type: 'bar',
+      type: 'radar',
       data: {
         labels: data.map(p => p.nombre),
         datasets: [{
           label: 'Cantidad Vendida',
           data: data.map(p => parseInt(p.cantidad_vendida)),
-          backgroundColor: paletaColores,
-          borderColor: paletaColores.map(c => c.replace('0.8', '1')),
-          borderWidth: 2
+          backgroundColor: 'rgba(99, 123, 91, 0.3)',
+          borderColor: 'rgba(99, 123, 91, 0.8)',
+          borderWidth: 3,
+          pointBackgroundColor: paletaColores,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8
         }]
       },
       options: {
-        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -109,24 +104,22 @@ async function cargarProductosMasVendidos() {
             display: true,
             text: '🥖 Panes más populares',
             font: { size: 16, weight: 'bold' },
-            color: '#ae2781ff'
+            color: '#637b5b'
           }
         },
         scales: {
-          x: {
+          r: {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#0c6ecfff'
+              color: '#a3aa5f'
             },
             grid: {
-              color: 'rgba(11, 241, 107, 0.1)'
-            }
-          },
-          y: {
-            ticks: {
-              color: '#0667c9ff',
-              font: { weight: 'bold' }
+              color: 'rgba(174, 228, 196, 0.1)'
+            },
+            pointLabels: {
+              color: '#637b5b',
+              font: { weight: 'bold', size: 11 }
             }
           }
         }
@@ -137,7 +130,7 @@ async function cargarProductosMasVendidos() {
   }
 }
 
-// 2. Usuarios con Más Compras (Barras)
+// 2. Usuarios con Más Compras (Polar)
 async function cargarUsuariosMasCompras() {
   try {
     const response = await fetch('/estadisticas/usuarios-mas-compras');
@@ -146,14 +139,14 @@ async function cargarUsuariosMasCompras() {
     const ctx = document.getElementById('chartUsuariosMasCompras');
     
     charts.usuariosMasCompras = new Chart(ctx, {
-      type: 'bar',
+      type: 'polarArea',
       data: {
         labels: data.map(u => u.nombre),
         datasets: [{
           label: 'Total de Compras',
           data: data.map(u => parseInt(u.total_compras)),
-          backgroundColor: coloresNavidad.dorado,
-          borderColor: coloresNavidad.verde,
+          backgroundColor: paletaColores.slice(0, data.length),
+          borderColor: '#fff',
           borderWidth: 3
         }]
       },
@@ -162,30 +155,28 @@ async function cargarUsuariosMasCompras() {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false
+            position: 'right',
+            labels: {
+              color: '#637b5b',
+              font: { size: 11, weight: 'bold' }
+            }
           },
           title: {
             display: true,
             text: '👥 Clientes más frecuentes',
             font: { size: 16, weight: 'bold' },
-            color: '#12c6f3ff'
+            color: '#a3aa5f'
           }
         },
         scales: {
-          y: {
-            beginAtZero: true,
+          r: {
             ticks: {
               stepSize: 1,
-              color: '#ec0fe1ff'
+              color: '#f58e83',
+              backdropColor: 'transparent'
             },
             grid: {
-              color: 'rgba(14, 243, 167, 0.1)'
-            }
-          },
-          x: {
-            ticks: {
-              color: '#5f921cff',
-              font: { weight: 'bold' }
+              color: 'rgba(174, 228, 196, 0.1)'
             }
           }
         }
@@ -204,7 +195,6 @@ async function cargarVentasSemana() {
     
     const ctx = document.getElementById('chartVentasSemana');
     
-    // Formatear fechas
     const labels = data.map(v => {
       const fecha = new Date(v.fecha);
       return fecha.toLocaleDateString('es-MX', { weekday: 'short', day: 'numeric' });
@@ -219,14 +209,15 @@ async function cargarVentasSemana() {
           data: data.map(v => parseInt(v.total_ventas)),
           backgroundColor: coloresNavidad.azulTransp,
           borderColor: coloresNavidad.azul,
-          borderWidth: 3,
+          borderWidth: 4,
           fill: true,
           tension: 0.4,
-          pointRadius: 6,
-          pointHoverRadius: 8,
+          pointRadius: 7,
+          pointHoverRadius: 10,
           pointBackgroundColor: '#fff',
           pointBorderColor: coloresNavidad.azul,
-          pointBorderWidth: 3
+          pointBorderWidth: 4,
+          pointStyle: 'circle'
         }]
       },
       options: {
@@ -238,9 +229,12 @@ async function cargarVentasSemana() {
           },
           title: {
             display: true,
-            text: '📅 Tendencia de ventas semanal',
+            text: '📅 ❄️ Tendencia de ventas semanal',
             font: { size: 16, weight: 'bold' },
-            color: '#cd34dbff'
+            color: '#637b5b'
+          },
+          filler: {
+            propagate: true
           }
         },
         scales: {
@@ -248,15 +242,15 @@ async function cargarVentasSemana() {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#ca7b99'
+              color: '#f58e83'
             },
             grid: {
-              color: 'rgba(52, 152, 219, 0.1)'
+              color: 'rgba(174, 228, 196, 0.1)'
             }
           },
           x: {
             ticks: {
-              color: '#4fa4faff',
+              color: '#a3aa5f',
               font: { weight: 'bold' }
             }
           }
@@ -268,7 +262,7 @@ async function cargarVentasSemana() {
   }
 }
 
-// 4. Ingresos Mensuales (Barras)
+// 4. Ingresos Mensuales (Línea)
 async function cargarIngresosMensuales() {
   try {
     const response = await fetch('/estadisticas/ingresos-mensuales');
@@ -277,15 +271,22 @@ async function cargarIngresosMensuales() {
     const ctx = document.getElementById('chartIngresosMensuales');
     
     charts.ingresosMensuales = new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: data.map(m => m.mes_nombre || m.mes),
         datasets: [{
           label: 'Ingresos ($)',
           data: data.map(m => parseFloat(m.ingresos)),
-          backgroundColor: coloresNavidad.rojo,
-          borderColor: coloresNavidad.verde,
-          borderWidth: 3
+          backgroundColor: 'rgba(246, 104, 136, 0.2)',
+          borderColor: coloresNavidad.rojo,
+          borderWidth: 4,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 8,
+          pointHoverRadius: 12,
+          pointBackgroundColor: coloresNavidad.verde,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 3
         }]
       },
       options: {
@@ -299,7 +300,7 @@ async function cargarIngresosMensuales() {
             display: true,
             text: '💰 Evolución de ingresos',
             font: { size: 16, weight: 'bold' },
-            color: '#EED9E3',
+            color: '#f66888'
           }
         },
         scales: {
@@ -309,15 +310,15 @@ async function cargarIngresosMensuales() {
               callback: function(value) {
                 return '$' + value.toLocaleString();
               },
-              color: '#ee66f3ff'
+              color: '#f58e83'
             },
             grid: {
-              color: 'rgba(235, 161, 238, 0.1)'
+              color: 'rgba(174, 228, 196, 0.1)'
             }
           },
           x: {
             ticks: {
-              color: '#D59FB5',
+              color: '#a3aa5f',
               font: { weight: 'bold' }
             }
           }
@@ -329,7 +330,7 @@ async function cargarIngresosMensuales() {
   }
 }
 
-// 5. Top Usuarios por Ingresos (Dona)
+// 5. Top Usuarios por Ingresos (Pie)
 async function cargarTopUsuariosIngresos() {
   try {
     const response = await fetch('/estadisticas/top-usuarios-ingresos');
@@ -338,7 +339,7 @@ async function cargarTopUsuariosIngresos() {
     const ctx = document.getElementById('chartTopUsuariosIngresos');
     
     charts.topUsuariosIngresos = new Chart(ctx, {
-      type: 'doughnut',
+      type: 'pie',
       data: {
         labels: data.map(u => u.nombre),
         datasets: [{
@@ -346,7 +347,8 @@ async function cargarTopUsuariosIngresos() {
           data: data.map(u => parseFloat(u.ingresos_totales)),
           backgroundColor: paletaColores.slice(0, 5),
           borderColor: '#fff',
-          borderWidth: 3
+          borderWidth: 4,
+          hoverOffset: 15
         }]
       },
       options: {
@@ -356,16 +358,16 @@ async function cargarTopUsuariosIngresos() {
           legend: {
             position: 'right',
             labels: {
-              color: '#2c3e50',
+              color: '#637b5b',
               font: { size: 12, weight: 'bold' },
               padding: 15
             }
           },
           title: {
             display: true,
-            text: '⭐ Mejores clientes',
+            text: '⭐ ❄️ Mejores clientes',
             font: { size: 16, weight: 'bold' },
-            color: '#9b59b6'
+            color: '#f66888'
           },
           tooltip: {
             callbacks: {
@@ -382,7 +384,7 @@ async function cargarTopUsuariosIngresos() {
   }
 }
 
-// 6. Stock vs Vendido (Barras Agrupadas)
+// 6. Stock vs Vendido (Barras Horizontales)
 async function cargarStockVsVendido() {
   try {
     const response = await fetch('/estadisticas/stock-vs-vendido');
@@ -412,37 +414,38 @@ async function cargarStockVsVendido() {
         ]
       },
       options: {
+        indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'top',
             labels: {
-              color: '#2c3e50',
+              color: '#637b5b',
               font: { size: 12, weight: 'bold' }
             }
           },
           title: {
             display: true,
-            text: '📦 Inventario vs Rotación',
+            text: ' 🎄 Inventario vs Rotación',
             font: { size: 16, weight: 'bold' },
-            color: '#01f5c4ff'
+            color: '#aee4c4'
           }
         },
         scales: {
-          y: {
+          x: {
             beginAtZero: true,
             ticks: {
               stepSize: 1,
-              color: '#2c3e50'
+              color: '#637b5b'
             },
             grid: {
-              color: 'rgba(22, 160, 133, 0.1)'
+              color: 'rgba(152, 186, 163, 0.1)'
             }
           },
-          x: {
+          y: {
             ticks: {
-              color: '#2c3e50',
+              color: '#637b5b',
               font: { weight: 'bold' }
             }
           }
@@ -451,33 +454,6 @@ async function cargarStockVsVendido() {
     });
   } catch (error) {
     console.error('Error en stock vs vendido:', error);
-  }
-}
-
-// Cargar resumen de cards
-async function cargarResumenCards() {
-  try {
-    const response = await fetch('/historial/estadisticas');
-    const data = await response.json();
-    
-    document.getElementById('statTotalVentasCard').textContent = data.total_ventas || 0;
-    document.getElementById('statIngresosCard').textContent = '$' + (data.ingresos_totales || 0).toLocaleString('es-MX', { minimumFractionDigits: 2 });
-    
-    // Calcular productos vendidos
-    const productosVendidos = data.productos_mas_vendidos?.reduce((sum, p) => sum + parseInt(p.cantidad_vendida || 0), 0) || 0;
-    document.getElementById('statProductosCard').textContent = productosVendidos;
-    
-    // Obtener clientes activos
-    const respUsuarios = await fetch('/estadisticas/usuarios-mas-compras');
-    const usuarios = await respUsuarios.json();
-    document.getElementById('statClientesCard').textContent = usuarios.length || 0;
-    
-  } catch (error) {
-    console.error('Error cargando resumen:', error);
-    document.getElementById('statTotalVentasCard').textContent = '0';
-    document.getElementById('statIngresosCard').textContent = '$0';
-    document.getElementById('statProductosCard').textContent = '0';
-    document.getElementById('statClientesCard').textContent = '0';
   }
 }
 
@@ -491,14 +467,14 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
   };
   
   const colores = {
-    success: '#27ae60',
-    danger: '#e7b13cff',
-    warning: '#a4f312ff',
-    info: '#b419d3ff'
+    success: '#a3aa5f',
+    danger: '#f58e83',
+    warning: '#f66888',
+    info: '#aee4c4'
   };
   
   const toast = document.createElement('div');
-  toast.className = `toast align-items-center text-white border-0`;
+  toast.className = 'toast align-items-center text-white border-0';
   toast.style.background = colores[tipo];
   toast.setAttribute('role', 'alert');
   toast.innerHTML = `
@@ -517,13 +493,12 @@ function mostrarNotificacion(mensaje, tipo = 'success') {
   setTimeout(() => toast.remove(), 5000);
 }
 
-// Event listener para cuando se abre el modal
+// Event listeners
 document.getElementById('modalEstadisticas')?.addEventListener('shown.bs.modal', () => {
-  console.log('📊 Modal de estadísticas abierto');
+  console.log('📊 🎄 Modal de estadísticas abierto');
   cargarEstadisticas();
 });
 
-// Event listener para cuando se cierra el modal
 document.getElementById('modalEstadisticas')?.addEventListener('hidden.bs.modal', () => {
   console.log('🔒 Modal de estadísticas cerrado');
   destruirGraficas();

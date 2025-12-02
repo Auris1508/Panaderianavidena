@@ -64,7 +64,7 @@ function initMap() {
   // Icono personalizado para la panadería
   const panaderiaIcon = L.divIcon({
     className: 'custom-panaderia-icon',
-    html: '<div style="font-size: 2.5rem;">🍞</div>',
+    html: '<div style="font-size: 2.5rem;">❄️</div>',
     iconSize: [40, 40],
     iconAnchor: [20, 40],
     popupAnchor: [0, -40]
@@ -74,14 +74,14 @@ function initMap() {
   const panaderiaMarker = L.marker(mexicoCityCoords, { icon: panaderiaIcon });
   panaderiaMarker.bindPopup(`
     <div style="text-align: center;">
-      <strong style="color: #d4af37; font-size: 1.1rem;">🍞 Panadería La Desesperanza</strong><br>
+      <strong style="color: #d4af37; font-size: 1.1rem;">❄️ Panadería La Desesperanza</strong><br>
       <small>Av. 16 de Septiembre 18, Centro Histórico</small><br>
       <small>📞 (55) 1234-5678</small>
     </div>
   `);
   map.addLayer(panaderiaMarker);
 
-  console.log('🍞 Marcador de panadería agregado');
+  console.log('❄️ Marcador de panadería agregado');
 
   // Conectar a Socket.IO
   socket = io();
@@ -132,7 +132,7 @@ function initMap() {
 
   // Si hay error al obtener ubicación
   map.on('locationerror', (e) => {
-    console.log('⚠️ No se pudo obtener la ubicación:', e.message);
+    console.log('⚠️ ❄️ No se pudo obtener la ubicación:', e.message);
   });
 
   // Escuchar cuando otros usuarios se conectan
@@ -162,7 +162,7 @@ function initMap() {
 
   // Cuando un usuario se desconecta
   socket.on('userDisconnected', (socketId) => {
-    console.log('👋 Usuario desconectado:', socketId);
+    console.log(' ❄️ Usuario desconectado:', socketId);
     
     // Eliminar su marcador del mapa
     if (userMarkers[socketId]) {
